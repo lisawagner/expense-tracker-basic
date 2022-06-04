@@ -9,7 +9,7 @@ export const useLogin = () => {
   const [isPending, setIsPending] = useState(false)
   const { dispatch } = useAuthContext()
 
-  const login = async () => {
+  const login = async (email, password) => {
     setError(null)
     setIsPending(true)
   
@@ -34,6 +34,7 @@ export const useLogin = () => {
   }
 
   useEffect(() => {
+    // When the component using this function unmounts, this clean up function fires
     return () => setIsCancelled(true)
   }, [])
 
