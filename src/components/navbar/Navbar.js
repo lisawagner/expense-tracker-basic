@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles
 import styles from './Navbar.module.css'
@@ -8,6 +9,7 @@ import Logo from '../../assets/icons/logo.svg'
 export default function Navbar() {
   // use the logout function from useLogout
   const { logout } = useLogout()
+  const { user } = useAuthContext()
 
   return (
     <nav className={styles.navbar}>
@@ -15,9 +17,19 @@ export default function Navbar() {
         <img src={Logo} alt='logo'/>
       </NavLink>
       <ul className={styles.navlinks}>
-        <li><NavLink to="/login">Login</NavLink></li>
-        <li><NavLink to="/signup">Signup</NavLink></li>
-        <li><button className="btn" onClick={logout}>Logout</button></li>
+        {!user && (
+          <>
+            <li><NavLink to="/login">Login</NavLink></li>
+          <li><NavLink to="/signup">Signup</NavLink></li>
+          </>
+        )}
+        {user && (
+          <>
+            <li>Welcome, {user.displayName}</li>
+            <li><button className="btn" onClick={logout}>Logout</button></li>
+          </>
+        )}
+        
       </ul>
   </nav>
   )
