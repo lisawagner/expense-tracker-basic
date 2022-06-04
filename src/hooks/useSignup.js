@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { auth } from '../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
+  const { dispatch } = useAuthContext()
 
   const signup = async ( email, password, displayName) => {
     setError(null)
@@ -17,7 +19,7 @@ export const useSignup = () => {
         email,
         password
       )
-      console.log(res.user)
+      console.log("User Created:", res.user);
 
       if (!res) {
         throw new Error('Could not complete signup. Please check your credentials and try again')
@@ -29,6 +31,10 @@ export const useSignup = () => {
         displayName
       })
       console.log('User profile updated for: ' + displayName);
+
+      // dispatch login action
+      dispatch({ type: 'LOGIN', payload: res.user })
+
 
       setIsPending(false)
       setError(null)
