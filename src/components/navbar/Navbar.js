@@ -19,13 +19,17 @@ export default function Navbar() {
       <ul className={styles.navlinks}>
         {!user && (
           <>
+            <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/login">Login</NavLink></li>
-          <li><NavLink to="/signup">Signup</NavLink></li>
+            <li><NavLink to="/signup">Signup</NavLink></li>
           </>
         )}
         {user && (
           <>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/budget">Budget</NavLink></li>
             <li>Welcome, {user.displayName}</li>
+            
             <li><button className="btn" onClick={logout}>Logout</button></li>
           </>
         )}

@@ -4,6 +4,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 
 // pages
 import Home from './pages/home/Home'
+import Budget from './pages/budget/Budget';
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 
@@ -16,12 +17,23 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            {/* Wildcard route sends you home (or 404) */}
-            <Route path="*" element={
-              !user ? <Navigate to='/login' /> : <Home />
+            <Route path="/budget" element={
+              !user
+              ? <Navigate to='/login' />
+              : <Budget />
             } />
+            <Route path="/login" element={
+              user
+              ? <Navigate to='/' />
+              : <Login />
+            } />
+            <Route path="/signup" element={
+              user
+              ? <Navigate to='/' />
+              : <Signup/>
+            } />
+            {/* Wildcard route sends you home (or 404) */}
+            <Route path="*" element={<Home />} />
           </Routes>
         </BrowserRouter>
       )}
