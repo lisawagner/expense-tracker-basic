@@ -26,6 +26,7 @@ export default function Navbar() {
         )}
         {user && (
           <>
+            {/* turn into a dropdown profile w/initials or img */}
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/budget">Budget</NavLink></li>
             <li>Welcome, {user.displayName}</li>
