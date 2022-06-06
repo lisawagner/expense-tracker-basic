@@ -3,7 +3,9 @@ import { db } from '../firebase/config'
 import {
   addDoc,
   collection,
-  Timestamp
+  Timestamp,
+  doc,
+  deleteDoc
 } from 'firebase/firestore'
 
 let initialState = {
@@ -18,53 +20,52 @@ const firestoreReducer = (state, action) => {
     case "IS_PENDING":
       console.log("is pending ...");
       return {success: false, isPending: true, error: null, document: null}
-    case "ERROR":
-      return {success: false, isPending: false, error: action.payload, document: null}
     case "ADDED_DOCUMENT":
       console.log('Added Doc!!!!!!!!!!!!!!!!!!');
       return {success: true, isPending: false, error: null, document: action.payload}
+    case 'DELETED_DOCUMENT':
+      return { success: true, isPending: false, error: null, document: null }
+    case "ERROR":
+      return {success: false, isPending: false, error: action.payload, document: null}
     default:
       return state
   }
 }
 
-const transactionRef = collection(db, "transactions")
-
-export const useFirestore = (collection) => {
+export const useFirestore = (dataSource) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState)
   const [isCancelled, setIsCancelled] = useState(false)
-
-  // only dispatch if not cancelled
-  // const dispatchIfNotCancelled = (action) => {
-  //   if (!isCancelled) {
-  //     dispatch(action)
-  //   }
-  // }
   
+  const transactionRef = collection(db, dataSource)
+
   // add a document
-  const addDocument = async (doc) => {
+  const addDocument = async (docs) => {
     dispatch({ type: "IS_PENDING" })
-
-    // only dispatch if not cancelled
-
 
     try {
       const createdAt = Timestamp.now()
-      const addDocument = await addDoc(transactionRef, {...doc, createdAt})
-      // dispatchIfNotCancelled({ type: "ADDED_DOCUMENT", payload: addDocument })
+      const addedDocument = await addDoc(transactionRef, {...docs, createdAt})
       if (!isCancelled) {
-        dispatch({ type: "ADDED_DOCUMENT", payload: addDocument })
+        dispatch({ type: "ADDED_DOCUMENT", payload: addedDocument })
       }
     }
     catch (err) {
-      // dispatchIfNotCancelled({ type: "ERROR", payload: err.message })
       dispatch({ type: "ERROR", payload: err.message })
     }
 
   }
 
   // delete a document
-  const deleteDocument = async (doc) => {
+  const deleteDocument = async (id) => {
+    dispatch({ type: "IS_PENDING" })
+
+    try {
+      const docRef = doc(db, dataSource, id)
+      await deleteDoc(docRef)
+      dispatch({ type: "DELETED_DOCUMENT"})
+    } catch (error) {
+      dispatch({ type: "ERROR", payload: 'could not delete' })
+    }
 
   }
 

@@ -29,6 +29,12 @@
   width: 97%;
   height: 2rem;
 }
+.login-form .errorBtn {
+  margin: 10px auto;
+  color: red;
+  font-size: 0.85em;
+  font-style: italic;
+}
 
 @media (min-width: 480px) {
   .login-form {

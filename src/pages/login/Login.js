@@ -7,7 +7,7 @@ import styles from './Login.module.css'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login, error, isPending } = useLogin()
+  const { login, error } = useLogin()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,9 +37,8 @@ export default function Login() {
             autoComplete='on'
           />
         </label>
-        { !isPending && <button className="btn">Login</button> }
-        { isPending && <button className="btn" disabled>Loading</button> }
-        { error && <p>{error}</p> }
+        <button className="btn">Login</button>
+        { error && <p className={styles.errorBtn}>{error}</p> }
       </form>
     </div>
   )

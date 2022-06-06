@@ -7,7 +7,7 @@ export const useAuthContext = () => {
 
   // for development - use case for: just wrapping a subtree of components
   if(!context) {
-    throw Error('useAuthContext must be used inside an AuthContextProvider')
+    throw new Error('useAuthContext must be used inside an AuthContextProvider')
   }
 
   return context
