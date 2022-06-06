@@ -1,54 +1,63 @@
+/*
+ * Firestore Hook
+ * fetch collection data from firestore
+ * set listener for any runtime changes in that collection
+ */
 import {useState, useEffect, useRef} from 'react'
 import { db } from '../firebase/config'
 import {
-  doc,
+  collection,
   onSnapshot,
-  // getDocs,
-  // deleteDoc,
-  // doc,
-  // serverTimestamp,
-  // Timestamp
+  query,
+  where,
+  orderBy
 } from 'firebase/firestore'
 
-export const useCollection = (collection, _query, _orderBy) => {
+export const useCollection = (dataSource, _q, _sort) => {
   const [documents, setDocuments] = useState(null)
   const [error, setError] = useState(null)
 
-  // if we don't use a ref --> infinite loop in useEffect
-  // _query is an array and is "different" on every function call
-  const query = useRef(_query).current
-  const orderBy = useRef(_orderBy).current
+  // useRef to avoid infinite loop in useEffect
+  // _q is an array and is "different" on each function call
+  const dataQuery = useRef(_q).current
+  const sortBy = useRef(_sort).current
 
   useEffect(() => {
-    // let collectionRef = projectFirestore.collection(collection)
-    const collectionRef = collection(db, "transactions")
+    let collectionRef = collection(db, dataSource)
 
-    if (query) {
-      collectionRef = collectionRef.where(...query)
+    if (dataQuery){
+      collectionRef = query(collectionRef, where(...dataQuery))
     }
-    if (orderBy) {
-      collectionRef = collectionRef.orderBy(...orderBy)
+    if (sortBy) {
+      // Note: create index on your Cloud Firestore collection
+      // and wait... until status: complete
+      collectionRef = query(collectionRef, orderBy(...sortBy))
     }
 
-    const unsub = collectionRef.onSnapshot(snapshot => {
+    // get documents and set listeners for realtime changes
+    const unsub = onSnapshot(collectionRef, (snapshot) => {
       let results = []
-      snapshot.docs.forEach(doc => {
-        console.log(doc)
-        results.push({...doc.data(), id: doc.id})
-      });
+
+      // map doc contents
+      snapshot.forEach((doc) => {
+        results.push({ id: doc.id, ...doc.data() })
+      })
       
       // update state
+      console.log('Result: ', results);
+
       setDocuments(results)
+
       setError(null)
     }, error => {
       console.log(error)
       setError('could not fetch the data')
     })
 
-    // unsub on unmount
+    // clean up listeners on unmount
     return () => unsub()
 
-  }, [collection, query, orderBy])
+  }, [dataSource, dataQuery, sortBy])
 
   return { documents, error }
 }
