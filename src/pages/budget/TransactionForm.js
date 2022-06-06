@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-// import { useFirestore } from '../../hooks/useFirestore'
+import { useFirestore } from '../../hooks/useFirestore'
+
 
 export default function TransactionForm({ uid }) {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
-  // const { addDocument, response } = useFirestore('transactions')
+  const { addDocument, response } = useFirestore('transactions')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -13,20 +14,21 @@ export default function TransactionForm({ uid }) {
       name, 
       amount,
     })
-    // addDocument({
-    //   uid, 
-    //   name, 
-    //   amount,
-    // })
+    addDocument({
+      uid, 
+      name, 
+      amount,
+    })
+
   }
 
-  // reset the form fields
-  // useEffect(() => {
-  //   if (response.success) {
-  //     setName('')
-  //     setAmount('')
-  //   }
-  // }, [response.success])
+  // Reset form
+  useEffect(() => {
+    if (response.success) {
+      setName('')
+      setAmount('')
+    }
+  }, [response.success])
 
   return (
     <>
@@ -55,3 +57,23 @@ export default function TransactionForm({ uid }) {
     </>
   )
 }
+
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault()
+//   console.log({
+//     uid,
+//     name, 
+//     amount,
+//   })
+//   try {
+//     await addDoc(collection(db, "transactions"), {
+//       uid,
+//       name,
+//       amount,
+//       created: Timestamp.now()
+//     })
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
