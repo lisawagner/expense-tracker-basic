@@ -19,7 +19,7 @@ export default function Navbar() {
       <ul className={styles.navlinks}>
         {!user && (
           <>
-            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/">About</NavLink></li>
             <li><NavLink to="/login">Login</NavLink></li>
             <li><NavLink to="/signup">Signup</NavLink></li>
           </>
@@ -27,7 +27,7 @@ export default function Navbar() {
         {user && (
           <>
             {/* turn into a dropdown profile w/initials or img */}
-            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/">About</NavLink></li>
             <li><NavLink to="/budget">Budget</NavLink></li>
             <li>Welcome, {user.displayName}</li>
             
