@@ -1,118 +1,46 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: 1em;
   /* max-width: 960px; */
   max-width: 100%;
-  margin: 2rem;
+  margin: 2em 1.5em;
+
 }
-.content {
+/* .content {
   padding-right: 20px;
-  /* grid gap instead? */
-}
-.sidebar {
-  /* padding-left: 30px; */
-}
-.sidebar form {
-  padding: 20px;
-  background: #1f9751;
-  border-radius: 10px;
-}
-.sidebar input, .sidebar select {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 4px;
-  color: #555;
-  font-size: 1em;
-}
-.sidebar label {
-  margin: 0 auto 20px;
-  display: block;
-  color: #fff;
-}
-.sidebar button {
-  color: #fff;
-  border: 2px solid #fff;
-  padding: 6px 12px;
-  background-color: transparent;
-  font-size: 1em;
-  border-radius: 4px;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-}
-.sidebar h3 {
-  color: #1f9751;
-  margin-bottom: 20px;
-}
-.sidebar aside {
-  margin-top: 40px;
-  color: #555;
-}
-.sidebar aside li {
-  margin: 10px;
-}
+} */
 
-/* transactions */
-.transactions li {
-  margin: 30px auto;
-  border: 1px solid #f2f2f2;
-  box-shadow: 3px 3px 5px rgba(50,50,50,0.1);
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  border-left: 4px solid #1f9751;
-}
-.transactions .name {
-  color: #777;
-  font-size: 1.4em;
-}
-.transactions .amount {
-  margin-left: auto;
-  margin-right: 40px;
-  color: #777;
-  font-weight: bold;
-  font-size: 1.6em;
-}
-.transactions .deleteBtn {
-  position: absolute;
-  bottom: 0;
-  right:0;
-  background: none;
-  /* color: #777; */
-  border: none;
-  padding: 8px 8px;
-  text-align: center;
-  line-height: 0;
-  font-size: 1.25em;
-  cursor: pointer;
-}
-
-.transactions .updateBtn {
-  position: absolute;
-  top: 0;
-  right:0;
-  background: none;
-  /* color: #777; */
-  border: none;
-  padding: 8px 8px;
-  text-align: center;
-  line-height: 0;
-  font-size: 1.25em;
-  cursor: pointer;
-}
 
 @media (min-width: 490px) {
   .container {
-    grid-template-columns: 1fr 1fr;
+    max-width: 84%;
+    margin: 2em auto;
   }
-  .sidebar {
-    padding-left: 10px;
-    /* grid gap instead? */
+}
+
+@media (min-width: 798px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    max-width: 82%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    grid-gap: 1.5em;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 76%;
+    grid-gap: 2em;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 70%;
+    grid-gap: 3em;
   }
 }

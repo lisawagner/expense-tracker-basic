@@ -3,9 +3,9 @@ import { useFirestore } from '../../hooks/useFirestore'
 import { MdDeleteForever, MdModeEdit } from 'react-icons/md';
 
 // styles
-import styles from './Budget.module.css'
+import styles from './BudgetList.module.css'
 
-export default function TransactionList({ transactions }) {
+export default function BudgetList({ transactions }) {
   
   const { deleteDocument } = useFirestore('transactions')
   console.log('TRANSACTIONS: ', transactions);
@@ -15,8 +15,9 @@ export default function TransactionList({ transactions }) {
   }
 
   return (
- 
-      <ul className={styles.transactions}>
+    <div className={styles.transactions}>
+      <h2>Expenses</h2>
+      <ul>
         {transactions.map((transaction) => (
           <li key={transaction.id}>
             <p className={styles.name}>{transaction.name}</p>
@@ -26,6 +27,6 @@ export default function TransactionList({ transactions }) {
           </li>
         ))}
       </ul>
-
+    </div>
   )
 }

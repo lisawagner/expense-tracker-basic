@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
 
-export default function TransactionForm({ uid }) {
+// styles
+import styles from './BudgetForm.module.css'
+
+export default function BudgetForm({ uid }) {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
   const { addDocument, response } = useFirestore('transactions')
@@ -30,11 +33,11 @@ export default function TransactionForm({ uid }) {
   }, [response.success])
 
   return (
-    <>
-      <h3>Add a Transaction</h3>
+    <div className={styles.budgetForm}>
+      <h2>Add Expense</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          <span>Transaction name:</span>
+          <span>Expense Name</span>
           <input 
             type="text"
             required
@@ -43,7 +46,7 @@ export default function TransactionForm({ uid }) {
           />
         </label>
         <label>
-          <span>Amount ($):</span>
+          <span>Amount ($)</span>
           <input
             type="number"
             required
@@ -53,7 +56,7 @@ export default function TransactionForm({ uid }) {
         </label>
         <button>Add Transaction</button>
       </form>
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,44 @@
+.budgetForm form {
+  margin-top: 0.8em;
+  padding: 20px;
+  background: #1f9751;
+  border-radius: 10px;
+}
+.budgetForm input, .budgetForm select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 4px;
+  color: #555;
+  font-size: 1em;
+}
+.budgetForm label {
+  margin: 0 auto 20px;
+  display: block;
+  color: #fff;
+}
+.budgetForm button {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  background-color: transparent;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+/* .budgetForm h3 {
+  color: #1f9751;
+  margin-bottom: 20px;
+} */
+.budgetForm aside {
+  margin-top: 40px;
+  color: #555;
+}
+.budgetForm aside li {
+  margin: 10px;
+}

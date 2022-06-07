@@ -5,8 +5,8 @@ import { useCollection } from '../../hooks/useCollection'
 import styles from './Budget.module.css'
 
 // components
-import TransactionForm from './TransactionForm'
-import TransactionList from './TransactionList'
+import BudgetForm from '../../components/BudgetForm/BudgetForm'
+import BudgetList from '../../components/BudgetList/BudgetList'
 
 export default function Budget() {
   const { user } = useAuthContext()
@@ -20,10 +20,10 @@ export default function Budget() {
     <div className={styles.container}>
       <div className={styles.content}>
         {error && <p>{error}</p>}
-        {documents && <TransactionList transactions={documents} />}
+        {documents && <BudgetList transactions={documents} />}
       </div>
       <div className={styles.sidebar}>
-        <TransactionForm uid={user.uid}/>
+        <BudgetForm uid={user.uid}/>
       </div>
     </div>
   )
