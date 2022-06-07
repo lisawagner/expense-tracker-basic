@@ -79,17 +79,31 @@
   font-weight: bold;
   font-size: 1.6em;
 }
-.transactions button {
+.transactions .deleteBtn {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  background: none;
+  /* color: #777; */
+  border: none;
+  padding: 8px 8px;
+  text-align: center;
+  line-height: 0;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+
+.transactions .updateBtn {
   position: absolute;
   top: 0;
   right:0;
-  background: #ddd;
-  color: #777;
+  background: none;
+  /* color: #777; */
   border: none;
-  padding: 12px 8px;
+  padding: 8px 8px;
   text-align: center;
   line-height: 0;
-  font-size: 0.9em;
+  font-size: 1.25em;
   cursor: pointer;
 }
 

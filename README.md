@@ -1,6 +1,6 @@
 # Basic Expense Tracker
 
-This is a basic expense tracking web app.
+This is a basic expense tracking web app. Users login to their account to view, add or delete expenses. (update?)
 
 ## Tech Stack
 
