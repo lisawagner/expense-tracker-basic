@@ -34,7 +34,7 @@ export default function BudgetList({ transactions }) {
             <button className={styles.updateBtn} onClick={() => handleEdit(transaction.id)}>
                 <MdModeEdit/>
             </button>
-            {/* NEED TO MOVE MODAL INTO INDIVIDUAL_ITEM */}
+            {/* NEED TO MOVE MODAL/EDIT_FORM INTO INDIVIDUAL_ITEM */}
             {showModal && (
             <Modal>
               {/* <EditForm transaction={transaction} /> */}
