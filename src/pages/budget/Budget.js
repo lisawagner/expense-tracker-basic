@@ -20,7 +20,7 @@ export default function Budget() {
     <div className={styles.container}>
       <div className={styles.content}>
         {error && <p>{error}</p>}
-        {documents && <BudgetList transactions={documents} />}
+        {documents && <BudgetList transactions={documents} uid={user.uid} />}
       </div>
       <div className={styles.sidebar}>
         <BudgetForm uid={user.uid}/>

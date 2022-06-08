@@ -4,12 +4,12 @@ import { useFirestore } from '../../hooks/useFirestore'
 // styles
 import styles from './EditForm.module.css'
 
-export default function EditForm({id, editName, editAmount}) {
+export default function EditForm({id, editName, editAmount, uid, onClose}) {
   const [name, setName] = useState(editName)
   const [amount, setAmount] = useState(editAmount)
 
+  console.log('USER: ' + uid);
   const { editDocument, response } = useFirestore('transactions')
-  console.log("From EditForm: ", id);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,27 +17,22 @@ export default function EditForm({id, editName, editAmount}) {
       name,
       amount
     }
-    console.log(id, {
-      name, 
-      amount,
-    })
     editDocument(id, newData)
   }
 
-    // Reset form
-    useEffect(() => {
-
-      if (response.success) {
-        setName('')
-        setAmount('')
-        // close modal
-
-      }
-    }, [response.success])
+  // Reset
+  useEffect(() => {
+    if (response.success) {
+      setName('')
+      setAmount('')
+      onClose()
+    }
+  }, [response.success, onClose])
 
   return (
     <div className={styles.editForm}>
       <h2>Edit Transaction</h2>
+      
       <form onSubmit={handleSubmit} >
       <label>
           <span>Change Transaction Name</span>
@@ -57,6 +52,7 @@ export default function EditForm({id, editName, editAmount}) {
           />
         </label>
         <button>Update</button>
+        {/* <button className={styles.closeBtn} onClick={onClose}>XXX</button> */}
       </form>
     </div>
   )

@@ -1,56 +1,25 @@
-import { useState } from 'react';
-import { useFirestore } from '../../hooks/useFirestore'
-import { MdDeleteForever, MdModeEdit } from 'react-icons/md';
 // components
-import EditForm from '../EditForm/EditForm'
-import Modal from '../Modal/Modal'
+import BudgetItem from './BudgetItem';
 
 // styles
 import styles from './BudgetList.module.css'
 
-export default function BudgetList({ transactions }) {
-  const [showModal, setShowModal] = useState(false)
-  const [expense, setExpense] = useState([])
-  
-  const { deleteDocument } = useFirestore('transactions')
-
-  const handleEdit = (docuData) => {
-    setShowModal(!showModal)
-
-    console.log("Handling edit for: ", docuData);
-  }
+export default function BudgetList({ transactions, uid }) {
 
   return (
     <div className={styles.transactions}>
       <h2>Expenses</h2>
-      <ul>
+      <div className={styles.transactionsList}>
         {transactions.map((transaction) => (
-          <li key={transaction.id}>
-            <p className={styles.name}>{transaction.name}</p>
-            <p className={styles.amount}>${transaction.amount}</p>
-
-            <button className={styles.deleteBtn} onClick={() => deleteDocument(transaction.id)}><MdDeleteForever/></button>
- 
-            <button className={styles.updateBtn} onClick={() => handleEdit(transaction.id)}>
-                <MdModeEdit/>
-            </button>
-            {/* NEED TO MOVE MODAL/EDIT_FORM INTO INDIVIDUAL_ITEM */}
-            {showModal && (
-            <Modal>
-              {/* <EditForm transaction={transaction} /> */}
-              <EditForm
-                id={transaction.id}
-                key={transaction.id}
-                editName={transaction.name}
-                editAmount={transaction.amount}
-              />
-              <button onClick={() => setShowModal(!showModal)}>X</button>
-            </Modal>
-            )}
-          </li>
+          <BudgetItem
+            key={transaction.id}
+            id={transaction.id}
+            name={transaction.name}
+            amount={transaction.amount}
+            uid={uid}
+          />
         ))}
-      </ul>
+      </div>
     </div>
-    
   )
 }
