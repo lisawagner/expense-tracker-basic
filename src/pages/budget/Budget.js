@@ -5,6 +5,7 @@ import { useCollection } from '../../hooks/useCollection'
 import styles from './Budget.module.css'
 
 // components
+import Profile from '../../components/Profile/Profile'
 import BudgetForm from '../../components/BudgetForm/BudgetForm'
 import BudgetList from '../../components/BudgetList/BudgetList'
 
@@ -17,14 +18,20 @@ export default function Budget() {
   )
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        {error && <p>{error}</p>}
-        {documents && <BudgetList transactions={documents} uid={user.uid} />}
+    <>
+      <div className={styles.profileContainer}>
+        <Profile uid={user.uid} />
       </div>
-      <div className={styles.sidebar}>
-        <BudgetForm uid={user.uid}/>
+      <div className={styles.expenseContainer}>
+
+        <div className={styles.content}>
+          {error && <p>{error}</p>}
+          {documents && <BudgetList transactions={documents} uid={user.uid} />}
+        </div>
+        <div className={styles.sidebar}>
+          <BudgetForm uid={user.uid}/>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
