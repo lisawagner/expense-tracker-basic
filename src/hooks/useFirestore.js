@@ -19,13 +19,13 @@ let initialState = {
 const firestoreReducer = (state, action) => {
   switch (action.type) {
     case "IS_PENDING":
-      console.log("IS_PENDING");
+      // console.log("IS_PENDING");
       return {success: false, isPending: true, error: null, document: null}
     case "ADDED_DOCUMENT":
-      console.log('Added Doc!!!!!!!!!!!!!!!!!!');
+      // console.log('Added Doc!!!!!!!!!!!!!!!!!!');
       return {success: true, isPending: false, error: null, document: action.payload}
     case "UPDATED_DOCUMENT":
-      console.log("Updated? ...");
+      // console.log("Updated? ...");
       return {success: true, isPending: false, error: null, document: action.payload}
     case 'DELETED_DOCUMENT':
       return { success: true, isPending: false, error: null, document: null }
@@ -59,20 +59,20 @@ export const useFirestore = (dataSource) => {
 
   }
 
-    // edit a document
-    const editDocument = async(itemId, value) => {
-      dispatch({ type: "IS_PENDING" })
-      console.log("ID: ", itemId);
-      console.log("Data: ", value);
-      try {
-        const editRef = doc(db, dataSource, itemId)
-        const editedDocument = await updateDoc(editRef, value)
-        dispatch({ type: "UPDATED_DOCUMENT", payload: editedDocument})
-      } catch (error) {
-        dispatch({ type: "ERROR", payload: 'could not delete' })
-      }
-  
+  // edit a document
+  const editDocument = async(itemId, value) => {
+    dispatch({ type: "IS_PENDING" })
+    // console.log("ID: ", itemId);
+    // console.log("Data: ", value);
+    try {
+      const editRef = doc(db, dataSource, itemId)
+      const editedDocument = await updateDoc(editRef, value)
+      dispatch({ type: "UPDATED_DOCUMENT", payload: editedDocument})
+    } catch (error) {
+      dispatch({ type: "ERROR", payload: 'could not edit' })
     }
+
+  }
 
   // delete a document
   const deleteDocument = async (id) => {
@@ -87,8 +87,6 @@ export const useFirestore = (dataSource) => {
     }
 
   }
-
-
 
   useEffect(() => {
     return () => setIsCancelled(true)

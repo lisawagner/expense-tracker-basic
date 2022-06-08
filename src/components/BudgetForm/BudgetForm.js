@@ -11,11 +11,11 @@ export default function BudgetForm({ uid }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({
-      uid,
-      name, 
-      amount,
-    })
+    // console.log({
+    //   uid,
+    //   name, 
+    //   amount,
+    // })
     addDocument({
       uid, 
       name, 
