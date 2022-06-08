@@ -44,7 +44,7 @@ export const useCollection = (dataSource, _q, _sort) => {
       })
       
       // update state
-      console.log('Result: ', results);
+      // console.log('Result: ', results);
 
       setDocuments(results)
 
