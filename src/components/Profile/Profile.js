@@ -10,13 +10,13 @@ export default function Profile({ uid }) {
   return (
     <div>
       <h1>Expense Tracker for { user.displayName }</h1>
-      {/* <div className={styles.profileData}>
+      <div className={styles.profileData}>
         <div>
           <TotalBudget uid={user.uid} />
         </div>
         <div>Remaining</div>
         <div>Total Spent</div>
-      </div> */}
+      </div>
     </div>
   )
 }
