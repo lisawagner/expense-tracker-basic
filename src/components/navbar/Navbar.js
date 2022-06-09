@@ -19,16 +19,16 @@ export default function Navbar() {
       <ul className={styles.navlinks}>
         {!user && (
           <>
-            <li><NavLink to="/">About</NavLink></li>
-            <li><NavLink to="/login">Login</NavLink></li>
-            <li><NavLink to="/signup">Signup</NavLink></li>
+            <li><NavLink to="/">ABOUT</NavLink></li>
+            <li><NavLink to="/login">LOGIN</NavLink></li>
+            <li><NavLink to="/signup">SIGNUP</NavLink></li>
           </>
         )}
         {user && (
           <>
             {/* turn into a dropdown profile w/initials or img */}
-            <li><NavLink to="/">About</NavLink></li>
-            <li><NavLink to="/budget">Budget</NavLink></li>
+            <li><NavLink to="/">ABOUT</NavLink></li>
+            <li><NavLink to="/budget">BUDGET</NavLink></li>
             <li>Welcome, {user.displayName}</li>
             
             <li><button className="btn" onClick={logout}>Logout</button></li>

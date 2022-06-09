@@ -11,22 +11,30 @@ import BudgetList from '../../components/BudgetList/BudgetList'
 
 export default function Budget() {
   const { user } = useAuthContext()
-  const { documents, error } = useCollection(
+  const { documents: transactions, error: transError } = useCollection(
     'transactions',
     ["uid", "==", user.uid],
     ['createdAt', 'desc']
   )
+  const { documents: budgets, error: budgetError } = useCollection(
+    'budgets',
+    ["uid", "==", user.uid],
+    ['createdAt', 'desc']
+  )
+  console.log('DOCS:', transactions);
+  console.log('BUDGETS: ', budgets);
 
   return (
     <>
       <div className={styles.profileContainer}>
-        <Profile uid={user.uid} />
+        {budgetError && <p>{budgetError}</p>}
+        {budgets && <Profile data={budgets} />}
       </div>
       <div className={styles.expenseContainer}>
 
         <div className={styles.content}>
-          {error && <p>{error}</p>}
-          {documents && <BudgetList transactions={documents} uid={user.uid} />}
+          {transError && <p>{transError}</p>}
+          {transactions && <BudgetList transactions={transactions} uid={user.uid} />}
         </div>
         <div className={styles.sidebar}>
           <BudgetForm uid={user.uid}/>

@@ -1,29 +1,46 @@
-import { useState, useEffect } from 'react'
-// firebase
-import { db } from '../../firebase/config'
-import { collection, onSnapshot, doc, getDoc, where, query, getDocs, docs  } from 'firebase/firestore'
+import { useState } from 'react'
 import { useDocument } from '../../hooks/useDocument'
+// NOTE: Budget initialized during signup via useSignup hook
 
-export default function TotalBudget({ uid }) {
-  const { userDoc, error } = useDocument(
-    'budgets',
-    'O6Oo9Axoeg5uNhUBzxCc',
-  )
+// components
+import Modal from '../Modal/Modal'
+import AddBudget from './AddBudget'
 
-  if (error) {
-    return <div className="error">{error}</div>
-  }
-  if (!userDoc) {
-    return <div className="loading">Loading...</div>
-  }
+// styles
+import styles from './TotalBudget.module.css'
+
+export default function TotalBudget({ id, amount, uid }) {
+  const [showModal, setShowModal] = useState(false)
   
-  // console.log(userDoc);
+  const handleEdit = (id) => {
+    setShowModal(!showModal)
+    console.log("Handling edit for: ", id);
+  }
 
+  const handleClose = () => {
+    setShowModal(!showModal)
+  }
 
   return (
-    <div>
-      <h3>Budget: {userDoc.totalAmount}</h3>
-      <button>Edit</button>
+    <div className={styles.totalContainer}>
+      <div className={styles.content}>
+        <p>BUDGET: ${amount}</p>
+        <button onClick={() => handleEdit(id)}>EDIT</button>
+      </div>
+      {showModal && (
+        <Modal>
+        <button className={styles.closeBtn} onClick={() => setShowModal(!showModal)}>XXX</button>
+          <AddBudget
+            key={id}
+            id={id}
+            editAmount={amount}
+            uid={uid}
+            onClose={handleClose}
+          />
+        </Modal>
+        
+        )}
     </div>
   )
 }
+

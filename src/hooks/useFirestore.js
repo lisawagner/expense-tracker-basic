@@ -49,9 +49,10 @@ export const useFirestore = (dataSource) => {
     try {
       const createdAt = Timestamp.now()
       const addedDocument = await addDoc(transactionRef, {...docs, createdAt})
-      if (!isCancelled) {
-        dispatch({ type: "ADDED_DOCUMENT", payload: addedDocument })
-      }
+      dispatch({ type: "ADDED_DOCUMENT", payload: addedDocument })
+      // if (!isCancelled) {
+      //   dispatch({ type: "ADDED_DOCUMENT", payload: addedDocument })
+      // }
     }
     catch (err) {
       dispatch({ type: "ERROR", payload: err.message })
@@ -89,6 +90,7 @@ export const useFirestore = (dataSource) => {
   }
 
   useEffect(() => {
+    // Todo, fix isCancelled
     return () => setIsCancelled(true)
   }, [])
 

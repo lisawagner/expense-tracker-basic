@@ -6,6 +6,7 @@ import styles from './BudgetList.module.css'
 
 export default function BudgetList({ transactions, uid }) {
 
+
   return (
     <div className={styles.transactions}>
       <h2>Expenses</h2>
