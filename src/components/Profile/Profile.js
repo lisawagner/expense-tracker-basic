@@ -6,6 +6,7 @@ import TotalBudget from './TotalBudget'
 
 export default function Profile({ uid }) {
   const { user } = useAuthContext()
+  // get specific users 'bugdets', send to totalbudget & remaining(for math)
 
   return (
     <div>
