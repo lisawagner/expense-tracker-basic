@@ -8,7 +8,6 @@ export default function EditForm({id, editName, editAmount, uid, onClose}) {
   const [name, setName] = useState(editName)
   const [amount, setAmount] = useState(editAmount)
 
-  console.log('USER: ' + uid);
   const { editDocument, response } = useFirestore('transactions')
 
   const handleSubmit = (e) => {
@@ -18,6 +17,19 @@ export default function EditForm({id, editName, editAmount, uid, onClose}) {
       amount
     }
     editDocument(id, newData)
+  }
+
+  const handleFloat = (e) => {
+    const { value } = e.target
+
+    if (value.match(/\./g)) {
+      const [, decimal] = value.split('.')
+
+      if (decimal?.length > 2) {
+        return
+      }
+    }
+    setAmount(value)
   }
 
   // Reset
@@ -34,7 +46,7 @@ export default function EditForm({id, editName, editAmount, uid, onClose}) {
       <h2>Edit Transaction</h2>
       
       <form onSubmit={handleSubmit} >
-      <label>
+        <label>
           <span>Change Transaction Name</span>
           <input 
             type="text"
@@ -47,12 +59,11 @@ export default function EditForm({id, editName, editAmount, uid, onClose}) {
           <span>Change Amount</span>
           <input
             type="number"
-            onChange={(e) => setAmount(e.target.value)} 
+            onChange={handleFloat} 
             value={amount} 
           />
         </label>
         <button>Update</button>
-        {/* <button className={styles.closeBtn} onClick={onClose}>XXX</button> */}
       </form>
     </div>
   )

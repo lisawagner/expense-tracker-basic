@@ -16,9 +16,21 @@ export default function BudgetForm({ uid }) {
       name, 
       amount,
     })
-
   }
 
+  const handleFloat = (e) => {
+    const { value } = e.target
+
+    if (value.match(/\./g)) {
+      const [, decimal] = value.split('.')
+
+      if (decimal?.length > 2) {
+        return
+      }
+    }
+    setAmount(value)
+  }
+  
   // Reset form
   useEffect(() => {
     if (response.success) {
@@ -41,12 +53,13 @@ export default function BudgetForm({ uid }) {
           />
         </label>
         <label>
-          <span>Amount ($)</span>
+          <span>Amount ($0.00)</span>
           <input
             type="number"
             required
-            onChange={(e) => setAmount(e.target.value)} 
-            value={amount} 
+            // onChange={(e) => setAmount(e.target.value)}
+            onChange={handleFloat}
+            value={amount}
           />
         </label>
         <button>Add Transaction</button>
@@ -54,23 +67,3 @@ export default function BudgetForm({ uid }) {
     </div>
   )
 }
-
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault()
-//   console.log({
-//     uid,
-//     name, 
-//     amount,
-//   })
-//   try {
-//     await addDoc(collection(db, "transactions"), {
-//       uid,
-//       name,
-//       amount,
-//       created: Timestamp.now()
-//     })
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
