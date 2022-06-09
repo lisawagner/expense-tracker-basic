@@ -8,7 +8,9 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  border-left: 4px solid #1f9751;
+  border-left: 6px solid #4498C9;
+  border-radius: 4px;
+  background: white;
 }
 .transactions .name {
   color: #777;

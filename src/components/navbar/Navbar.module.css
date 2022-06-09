@@ -1,7 +1,7 @@
 /* navbar styles */
 .navbar {
   width: 100%;
-  background: #effaf0;
+  background: white;
   padding: 14px 10px;
   box-sizing: border-box;
   display: flex;
@@ -21,7 +21,9 @@
 .navbar li {
   margin: 10px auto;
 }
-
+.navbar button {
+  margin: 0 auto;
+}
 /* .navbar button, .navbar a {
   margin-left: 16px;
 } */
@@ -30,7 +32,7 @@
   text-decoration: none;
 }
 .navbar a:hover {
-  color: pink;
+  color: #C94498;
 }
 
 @media (min-width: 480px) {

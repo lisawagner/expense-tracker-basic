@@ -1,0 +1,41 @@
+.totalContainer {
+  box-shadow: 2px 2px 5px rgba(50,50,50,0.2);
+  border-radius: 4px;
+  background: #98C944;
+  padding: 8px;
+}
+.totalContainer .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #fff;
+  /* margin: 0.2em auto; */
+}
+
+.totalContainer button {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  background-color: transparent;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  
+}
+
+.totalContainer .closeBtn {
+  /* display: flex; */
+  /* width: 100%; */
+  /* justify-content: flex-end; */
+  /* background: none;
+  border: none; */
+  /* line-height: 0; */
+  color: black;
+  font-size: 1.25em;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* #4498C9, #C94498, #98C944 */
