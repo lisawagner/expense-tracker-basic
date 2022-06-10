@@ -29,7 +29,7 @@ export default function TotalBudget({ id, amount, uid }) {
       </div>
       {showModal && (
         <Modal>
-        <button className={styles.closeBtn} onClick={() => setShowModal(!showModal)}>XXX</button>
+        <button className={styles.closeBtn} onClick={() => setShowModal(!showModal)}>X</button>
           <AddBudget
             key={id}
             id={id}

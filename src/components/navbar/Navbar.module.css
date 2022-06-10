@@ -12,7 +12,11 @@
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
 }
 .navbar .brand {
-  padding: 0;
+  /* padding: 0; */
+  color: #4498C9;
+  font-size: 4em;
+  display: flex;
+  align-items: center;
 }
 .navbar img {
   width: 50px;

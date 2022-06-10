@@ -1,9 +1,9 @@
 .spentContainer {
-  /* border: 1px solid #f2f2f2; */
   box-shadow: 2px 2px 5px rgba(50,50,50,0.2);
   border-radius: 4px;
   background: #4498C9 ;
-  padding: 8px;
+  /* padding: 8px; */
+  padding: 1em 1.5em;
 }
 .spentContent {
   display: flex;

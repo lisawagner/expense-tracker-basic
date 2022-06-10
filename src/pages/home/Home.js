@@ -1,9 +1,9 @@
 // styles
-// import styles from './Home.module.css'
+import styles from './Home.module.css'
 
 
 export default function Home() {
   return (
-    <div>About</div>
+    <div className={styles.aboutContainer}>About</div>
   )
 }

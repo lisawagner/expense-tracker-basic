@@ -1,0 +1,29 @@
+.aboutContainer {
+  max-width: 100%;
+  margin: 2em 1.5em;
+}
+@media (min-width: 490px) {
+  .aboutContainer {
+    max-width: 84%;
+    margin: 2em auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .aboutContainer {
+    max-width: 82%;
+  }
+}
+
+@media (min-width: 1024px) {
+
+}
+@media (min-width: 1200px) {
+  .aboutContainer {
+    max-width: 78%;
+  }
+}
+
+@media (min-width: 1400px) {
+
+}

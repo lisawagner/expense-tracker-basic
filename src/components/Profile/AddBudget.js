@@ -39,18 +39,21 @@ export default function AddBudget({id, editAmount, uid, onClose}) {
   }, [response.success, onClose])
 
   return (
-    <div className={styles.addBudgetWrap}>
+    <div className={styles.addBudget}>
       <h2>Update Budget</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          <span>Change Budget Amount</span>
-          <input
-            type="number"
-            onChange={handleFloat}
-            value={totalAmount}
-          />
-        </label>
-        <button>Update</button>
+        <div className={styles.addInput}>
+          {/* <span>New Budget</span> */}
+          <label>
+            <span>New Budget</span>
+            <input
+              type="number"
+              onChange={handleFloat}
+              value={totalAmount}
+            />
+          </label>
+          <button>Update</button>
+        </div>
       </form>
     </div>
   )

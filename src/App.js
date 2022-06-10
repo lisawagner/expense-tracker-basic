@@ -17,7 +17,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/budget" element={
+            <Route path="/" element={
               !user
               ? <Navigate to='/login' />
               : <Budget />
@@ -32,8 +32,8 @@ function App() {
               ? <Navigate to='/' />
               : <Signup/>
             } />
-            {/* Wildcard route sends you home (or 404) */}
-            <Route path="*" element={<Home />} />
+            {/* Wildcard route sends you home/about */}
+            <Route path="/*" element={<Home />} />
           </Routes>
         </BrowserRouter>
       )}

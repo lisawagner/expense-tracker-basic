@@ -1,7 +1,7 @@
 .profileData {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 96%;
+  max-width: 98%;
   margin: 1em auto;
   row-gap: 0.5em;
 }
