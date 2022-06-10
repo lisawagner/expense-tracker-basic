@@ -28,7 +28,7 @@ export default function Budget() {
     <>
       <div className={styles.profileContainer}>
         {budgetError && <p>{budgetError}</p>}
-        {budgets && <Profile data={budgets} />}
+        {budgets && <Profile income={budgets} expenses={transactions} />}
       </div>
       <div className={styles.expenseContainer}>
 
