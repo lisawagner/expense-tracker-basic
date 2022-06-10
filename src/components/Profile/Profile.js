@@ -12,9 +12,13 @@ export default function Profile({ income, expenses }) {
   console.log('BUDGETS Data: ', income);
   console.log('EXPENSES Data: ', expenses);
 
-  const sum = expenses.map( (datum) => parseFloat(datum.amount) ).reduce( (a, b) => a + b )
+  const sum = expenses
+    .map( (datum) => parseFloat(datum.amount) )
+    .reduce( (a, b) => a + b )
 
-  const totalFunds = income.map( (datum) => parseFloat(datum.totalAmount) ).reduce( (a,b) => a + b )
+  const totalFunds = income
+    .map( (datum) => parseFloat(datum.totalAmount) )
+    .reduce( (a,b) => a + b )
 
   const remainder = parseFloat(totalFunds - sum).toFixed(2)
 
@@ -27,8 +31,7 @@ export default function Profile({ income, expenses }) {
             key={budget.id}
             id={budget.id}
             amount={budget.totalAmount}
-            uid={budget.uid} />
-            
+            uid={budget.uid} /> 
         ))}  
         <Remainder data={remainder} />
         <Spent data={sum} />
