@@ -37,7 +37,7 @@ export const useSignup = () => {
       // create initial budget action
       addDocument({
         uid: res.user.uid,
-        totalAmount: '0'
+        totalAmount: '0.00'
       })
 
       // dispatch login action

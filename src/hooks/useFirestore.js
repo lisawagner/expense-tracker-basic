@@ -25,7 +25,6 @@ const firestoreReducer = (state, action) => {
       // console.log('Added Doc!!!!!!!!!!!!!!!!!!');
       return {success: true, isPending: false, error: null, document: action.payload}
     case "UPDATED_DOCUMENT":
-      // console.log("Updated? ...");
       return {success: true, isPending: false, error: null, document: action.payload}
     case 'DELETED_DOCUMENT':
       return { success: true, isPending: false, error: null, document: null }

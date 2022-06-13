@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles
@@ -8,17 +9,44 @@ import TotalBudget from './TotalBudget'
 
 export default function Profile({ income, expenses }) {
   const { user } = useAuthContext()
+  const [sum, setSum] = useState('0.00')
+  const [totalFunds, setTotalFunds] = useState("0")
 
   console.log('BUDGETS Data: ', income);
   console.log('EXPENSES Data: ', expenses);
 
-  const sum = expenses
-    .map( (datum) => parseFloat(datum.amount) )
-    .reduce( (a, b) => a + b )
+  useEffect(() => {
+    let temp = 0
+    for(let i = 0; i < income.length; i++) {
+      temp += parseFloat(income[i].totalAmount)
+    }
+    console.log("Temp: ", temp)
+   
+    setTotalFunds(temp)
+  }, [income])
 
-  const totalFunds = income
-    .map( (datum) => parseFloat(datum.totalAmount) )
-    .reduce( (a,b) => a + b )
+  console.log("setTotalFunds: ", {totalFunds});
+
+  useEffect(() => {
+    
+    if (expenses !== null) {
+      let temp = 0
+      for(let i = 0; i < expenses.length; i++) {
+        temp += parseFloat(expenses[i].amount)
+      }
+
+      setSum(temp) 
+    }
+
+  }, [expenses])
+
+  // const sum = expenses
+  //   .map( (datum) => parseFloat(datum.amount) )
+  //   .reduce( (a, b) => a + b )
+
+  // const totalFunds = income
+  //   .map( (datum) => parseFloat(datum.totalAmount) )
+  //   .reduce( (a,b) => a + b )
 
   const remainder = parseFloat(totalFunds - sum).toFixed(2)
 
@@ -31,7 +59,8 @@ export default function Profile({ income, expenses }) {
             key={budget.id}
             id={budget.id}
             amount={budget.totalAmount}
-            uid={budget.uid} /> 
+            uid={budget.uid}
+            /> 
         ))}  
         <Remainder data={remainder} />
         <Spent data={sum} />

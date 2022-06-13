@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDocument } from '../../hooks/useDocument'
+// import { useDocument } from '../../hooks/useDocument'
 // NOTE: Budget initialized during signup via useSignup hook
 
 // components
