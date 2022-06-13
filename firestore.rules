@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /transactions/{document=**} {
+      // allow read, write: if
+      //     request.time < timestamp.date(2022, 7, 4);
+
+      // only authorized users can create documents
+      allow create: if request.auth != null;
+
+      // only the specific user who created the document can read/delete/update
+      allow read, delete, update: if request.auth.uid == resource.data.uid;
+    }
+    match /budgets/{document=**} {
+      // initial budget created on signup, no create function in app
+      allow create: if request.auth != null;
+      allow read, delete, update: if request.auth.uid == resource.data.uid;
+    }
+  }
+}
