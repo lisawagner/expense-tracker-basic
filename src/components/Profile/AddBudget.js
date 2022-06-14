@@ -30,6 +30,17 @@ export default function AddBudget({id, editAmount, uid, onClose}) {
     setTotalAmount(value)
   }
 
+  const handleNum = (e) => {
+    const { value } = e.target
+
+    if (value < 0) {
+      setTotalAmount(value * -1 )
+    }
+    if (value === '0') {
+      setTotalAmount('')
+    }
+  }
+
   // Reset
   useEffect(() => {
     if (response.success) {
@@ -48,8 +59,11 @@ export default function AddBudget({id, editAmount, uid, onClose}) {
             <span>New Budget</span>
             <input
               type="number"
+              required
               onChange={handleFloat}
               value={totalAmount}
+              max="9999999"
+              onKeyUp={handleNum}
             />
           </label>
           <button>Update</button>

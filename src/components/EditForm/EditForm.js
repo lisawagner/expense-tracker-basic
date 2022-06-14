@@ -32,6 +32,17 @@ export default function EditForm({id, editName, editAmount, uid, onClose}) {
     setAmount(value)
   }
 
+  const handleNum = (e) => {
+    const { value } = e.target
+
+    if (value < 0) {
+      setAmount(value * -1 )
+    }
+    if (value === '0') {
+      setAmount('')
+    }
+  }
+
   // Reset
   useEffect(() => {
     if (response.success) {
@@ -59,8 +70,12 @@ export default function EditForm({id, editName, editAmount, uid, onClose}) {
           <span>Change Amount</span>
           <input
             type="number"
-            onChange={handleFloat} 
-            value={amount} 
+            onChange={handleFloat}
+            required
+            value={amount}
+            name="amount"
+            max="9999999"
+            onKeyUp={handleNum}
           />
         </label>
         <button>Update</button>

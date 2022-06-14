@@ -30,23 +30,15 @@ export default function Profile({ income, expenses }) {
   useEffect(() => {
     
     if (expenses !== null) {
-      let temp = 0
+      let tempNum = 0
       for(let i = 0; i < expenses.length; i++) {
-        temp += parseFloat(expenses[i].amount)
+        tempNum += parseFloat(expenses[i].amount)
       }
-
-      setSum(temp) 
+      let newSum = parseFloat(tempNum).toFixed(2)
+      setSum(newSum)
     }
 
   }, [expenses])
-
-  // const sum = expenses
-  //   .map( (datum) => parseFloat(datum.amount) )
-  //   .reduce( (a, b) => a + b )
-
-  // const totalFunds = income
-  //   .map( (datum) => parseFloat(datum.totalAmount) )
-  //   .reduce( (a,b) => a + b )
 
   const remainder = parseFloat(totalFunds - sum).toFixed(2)
 

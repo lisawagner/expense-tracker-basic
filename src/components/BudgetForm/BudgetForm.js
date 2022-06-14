@@ -38,7 +38,7 @@ export default function BudgetForm({ uid }) {
     if (value < 0) {
       setAmount(value * -1 )
     }
-    if (value == 0) {
+    if (value === '0') {
       setAmount('')
     }
   }
