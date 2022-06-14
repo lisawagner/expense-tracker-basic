@@ -15,7 +15,7 @@ This app is an extension of an assignment from the course: [Build Websites with 
 - updated the routing to React Router 6
 - added Edit/Update operations, so the user can edit/update their entries
 - added an overview section to include: an editable initial budget amount, and coded mathematical functions for the amount spent and the remainder values
-- added input logic so users can only enter amounts with upto 2 decimals
+- added input logic so users can only enter amounts with upto 2 decimals, no negative values and no empty values.
 
 To develop with Firebase 9, I referred to these repositories and tutorials:
   - [Firebase-user-auth](https://github.com/Tammibriggs/Firebase_user_auth/blob/main/src/App.js)
