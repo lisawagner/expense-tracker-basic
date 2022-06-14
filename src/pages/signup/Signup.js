@@ -17,8 +17,8 @@ export default function Signup() {
   }
 
   return (
-    <div className={styles['signup-container']}>
-      <form onSubmit={handleSubmit} className={styles['signup-form']}>
+    <div className={styles.signupWrap}>
+      <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <label>
           <span>Email:</span>
@@ -47,10 +47,9 @@ export default function Signup() {
             autoComplete='on'
           />
         </label>
-        {/* <button className="btn">Signup</button> */}
         {!isPending && <button className="btn">Signup</button>}
         {isPending && <button className="btn" disabled>loading</button>}
-        {error && <p className={styles.errorBtn}>{error}</p>}
+        {error && <p className={styles.errorMsg}>{error}</p>}
       </form>
     </div>
   )
