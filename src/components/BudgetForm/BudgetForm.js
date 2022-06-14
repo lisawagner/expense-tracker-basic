@@ -29,6 +29,18 @@ export default function BudgetForm({ uid }) {
       }
     }
     setAmount(value)
+
+  }
+
+  const handleNum = (e) => {
+    const { value } = e.target
+
+    if (value < 0) {
+      setAmount(value * -1 )
+    }
+    if (value == 0) {
+      setAmount('')
+    }
   }
   
   // Reset form
@@ -49,7 +61,9 @@ export default function BudgetForm({ uid }) {
             type="text"
             required
             onChange={(e) => setName(e.target.value)} 
-            value={name} 
+            value={name}
+            name="name"
+            maxLength="45"
           />
         </label>
         <label>
@@ -60,6 +74,9 @@ export default function BudgetForm({ uid }) {
             // onChange={(e) => setAmount(e.target.value)}
             onChange={handleFloat}
             value={amount}
+            name="amount"
+            max="9999999"
+            onKeyUp={handleNum}
           />
         </label>
         <button>Add Transaction</button>
