@@ -21,8 +21,8 @@ export default function Budget() {
     ["uid", "==", user.uid],
     ['createdAt', 'desc']
   )
-  console.log('DOCS:', transactions);
-  console.log('BUDGETS: ', budgets);
+  // console.log('DOCS:', transactions);
+  // console.log('BUDGETS: ', budgets);
 
   return (
     <>

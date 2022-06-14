@@ -14,7 +14,7 @@ export default function TotalBudget({ id, amount, uid }) {
   
   const handleEdit = (id) => {
     setShowModal(!showModal)
-    console.log("Handling edit for: ", id);
+    // console.log("Handling edit for: ", id);
   }
 
   const handleClose = () => {

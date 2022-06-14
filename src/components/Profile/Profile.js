@@ -12,23 +12,14 @@ export default function Profile({ income, expenses }) {
   const [sum, setSum] = useState('0.00')
   const [totalFunds, setTotalFunds] = useState("0")
 
-  console.log('BUDGETS Data: ', income);
-  console.log('EXPENSES Data: ', expenses);
 
   useEffect(() => {
-    let temp = 0
+    let tempIncome = 0
     for(let i = 0; i < income.length; i++) {
-      temp += parseFloat(income[i].totalAmount)
+      tempIncome += parseFloat(income[i].totalAmount)
     }
-    console.log("Temp: ", temp)
-   
-    setTotalFunds(temp)
-  }, [income])
+    setTotalFunds(tempIncome)
 
-  console.log("setTotalFunds: ", {totalFunds});
-
-  useEffect(() => {
-    
     if (expenses !== null) {
       let tempNum = 0
       for(let i = 0; i < expenses.length; i++) {
@@ -38,7 +29,20 @@ export default function Profile({ income, expenses }) {
       setSum(newSum)
     }
 
-  }, [expenses])
+  }, [income, expenses])
+
+  // useEffect(() => {
+    
+  //   if (expenses !== null) {
+  //     let tempNum = 0
+  //     for(let i = 0; i < expenses.length; i++) {
+  //       tempNum += parseFloat(expenses[i].amount)
+  //     }
+  //     let newSum = parseFloat(tempNum).toFixed(2)
+  //     setSum(newSum)
+  //   }
+
+  // }, [expenses])
 
   const remainder = parseFloat(totalFunds - sum).toFixed(2)
 

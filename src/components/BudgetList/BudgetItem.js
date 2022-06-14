@@ -14,7 +14,7 @@ export default function BudgetItem({ id, name, amount, uid }) {
 
   const handleEdit = (docuData) => {
     setShowModal(!showModal)
-    console.log("Handling edit for: ", docuData, uid);
+    // console.log("Handling edit for: ", docuData, uid);
   }
 
   const handleClose = () => {

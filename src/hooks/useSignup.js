@@ -21,7 +21,7 @@ export const useSignup = () => {
         email,
         password
       )
-      console.log("User Created:", res.user);
+      console.log("User Created");
       // we now have a uid
 
       if (!res) {
