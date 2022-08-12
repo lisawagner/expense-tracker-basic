@@ -1,6 +1,8 @@
 # Expense Tracker
 
-A basic expense tracking web app where users login to their account to view, add, update and delete expenses. [Live Demo](https://colour-palette-builder.web.app "Colour Palette Demo")
+A basic expense tracking web app where users login to their account to view, add, update and delete expenses.
+
+[Live Demo](https://colour-palette-builder.web.app "Colour Palette Demo")
 
 ![Expense Tracker Profile Page](src/assets/img/expense-tracker.png "Expense Tracker Profile Page")
 
